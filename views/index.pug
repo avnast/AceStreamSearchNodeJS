@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  div(class='container')
+    div(class='row')
+      div(class='col-md')
+        div#video
+          div(class='p-3 d-block bg-dark text-white' style='width: 480px; height: 360px') video will be here
+      div(class='col-md')
+        form(method='GET')
+          div(class='form-group form-row')
+            div(class='col-auto')
+              input(class='form-control' name='q' value=q placeholder='type your query here')
+            div(class='col-auto')
+              input(class='btn btn-primary' type='submit' value='Search')
+        if results['total'] > 0
+          table#results(class='table table-sm')
+            caption Search results
+            thead
+              tr
+                th(scope='col') category
+                th(scope='col') bitrate
+                th(scope='col') availability
+                th(scope='col')
+            tbody
+              each result in results['results']
+                tr(class='table-primary')
+                  td(colspan=4)
+                    if 'icon' in result
+                      img(src=result['icon'])
+                    | #{result['name']}
+                if 'epg' in result
+                  tr(class='table-secondary')
+                    td #{(new Date(result['epg']['start']*1000)).toLocaleString('ru', {hour: '2-digit', minute: '2-digit'})}-#{(new Date(result['epg']['stop']*1000)).toLocaleString('ru', {hour: '2-digit', minute: '2-digit'})}
+                    td(colspan=3) #{result['epg']['name']}
+                each item in result['items']
+                  tr
+                    td
+                      if 'categories' in item
+                        | (#{item['categories'].join(',')})
+                    td(align='right') #{item['bitrate']}
+                    td(align='center') #{new Intl.NumberFormat('ru', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(item['availability'])}/
+                      if item['status'] == 0
+                        span(class='red') RED
+                      else if item['status'] == 1
+                        span(class='yellow') YELLOW
+                      else if item['status'] == 2
+                        span(class='green') GREEN
+                      else
+                        | UNKNOWN
+                    td
+                      a(href='http://'+aceengineaddr+'/ace/manifest.m3u8?infohash='+encodeURI(item['infohash']), onclick='return play_video("'+item['infohash']+'")') play

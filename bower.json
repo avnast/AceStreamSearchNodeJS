@@ -1,0 +1,14 @@
+{
+  "name": "acestreamsearchnodejs",
+  "version": "1.0.0",
+  "main": "dist/**/main.*",
+  "ignore": [
+    ".jshintrc",
+    "**/*.txt"
+  ],
+  "dependencies": {
+    "bootstrap": "4.1.0",
+    "hls.js": "0.9.1"
+  },
+  "devDependencies": {}
+}

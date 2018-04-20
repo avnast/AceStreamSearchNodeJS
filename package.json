@@ -1,0 +1,25 @@
+{
+  "name": "acestreamsearchnodejs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "grunt": "^1.0.2",
+    "less-middleware": "~2.2.1",
+    "morgan": "~1.9.0",
+    "pug": "^2.0.3",
+    "serve-favicon": "~2.4.5"
+  },
+  "optionalDependencies": {},
+  "devDependencies": {
+    "grunt-bower-concat": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-less": "^1.4.1"
+  }
+}

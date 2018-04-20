@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/bundle.css')
+    script(src='/bundle.js')
+    //- Bootstrap
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+  body
+    block content
+    script
+      - const video_width = 480, video_height = 360;
+      | const ace = '#{aceengineaddr}',
+      |   div_id = 'video',
+      |   video_id = 'video_video',
+      |   video_width = #{video_width}, video_height = #{video_height};
+      |
+      include clientside.js
